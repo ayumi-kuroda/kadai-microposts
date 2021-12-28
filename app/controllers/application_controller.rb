@@ -4,10 +4,17 @@ class ApplicationController < ActionController::Base
     
     include Pagy::Backend
     
+    private
+    
     #ログイン要求処理
     def require_user_logged_in
-    unless logged_in?
-      redirect_to login_url
+      unless logged_in?
+        redirect_to login_url
+      end
     end
+   
+    #Micropostの数をカウント
+    def counts(user)
+    @count_microposts = user.microposts.count
   end
 end
